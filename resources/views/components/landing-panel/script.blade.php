@@ -1,0 +1,11 @@
+  <!-- JS here -->
+  <script src="{{ asset('bastomi') }}/assets/js/jquery.min.js"></script>
+  <script src="{{ asset('bastomi') }}/assets/js/bootstrap.bundle.min.js"></script>
+  <script src="{{ asset('bastomi') }}/assets/js/swipper-bundle.min.js"></script>
+  <script src="{{ asset('bastomi') }}/assets/js/jquery.meanmenu.min.js"></script>
+  <script src="{{ asset('bastomi') }}/assets/js/wow.min.js"></script>
+  <script src="{{ asset('bastomi') }}/assets/js/isotope.pkgd.min.js"></script>
+  <script src="{{ asset('bastomi') }}/assets/js/odometer.min.js"></script>
+  <script src="{{ asset('bastomi') }}/assets/js/jquery.modal.min.js"></script>
+  <script src="{{ asset('bastomi') }}/assets/js/appear.min.js"></script>
+  <script src="{{ asset('bastomi') }}/assets/js/main.js"></script>
