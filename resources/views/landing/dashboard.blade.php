@@ -25,7 +25,7 @@
         <div class="col-xxl-6 col-xl-6 col-lg-6">
           <div class="bostami-what-do-item bg-prink">
             <div class="icon">
-              <i class="fa-light fa-swatchbook"></i>
+              <h4>1</h4>
             </div>
             <div class="text">
               <h4 class="title">Ui/Ux Design</h4>
@@ -38,7 +38,7 @@
         <div class="col-xxl-6 col-xl-6 col-lg-6">
           <div class="bostami-what-do-item bg-catkrill">
             <div class="icon">
-              <i class="fa-regular fa-grid-2"></i>
+              <h4>2</h4>
             </div>
             <div class="text">
               <h4 class="title">App Development</h4>
@@ -51,7 +51,7 @@
         <div class="col-xxl-6 col-xl-6 col-lg-6">
           <div class="bostami-what-do-item  bg-catkrill">
             <div class="icon">
-              <i class="fa-regular fa-camera-retro"></i>
+              <h4>3</h4>
             </div>
             <div class="text">
               <h4 class="title">Photography</h4>
@@ -64,7 +64,7 @@
         <div class="col-xxl-6 col-xl-6 col-lg-6">
           <div class="bostami-what-do-item bg-prink bg-blue">
             <div class="icon">
-              <i class="fa-regular fa-code"></i>
+              <h4>4</h4>
             </div>
             <div class="text">
               <h4 class="title">Web Development</h4>
