@@ -40,6 +40,29 @@
           <li class="side-nav-title mt-2">Apps & Pages</li>
 
           <li class="side-nav-item">
+            <a data-bs-toggle="collapse" href="#sidebarKategori" aria-expanded="false" aria-controls="sidebarKategori"
+              class="side-nav-link">
+              <span class="menu-icon"><i class="ti ti-list"></i></span>
+              <span class="menu-text"> Kategori </span>
+              <span class="menu-arrow"></span>
+            </a>
+            <div class="collapse" id="sidebarKategori">
+              <ul class="sub-menu">
+                <li class="side-nav-item">
+                  <a href="apps-ecommerce-products.html" class="side-nav-link">
+                    <span class="menu-text">Porto</span>
+                  </a>
+                </li>
+                <li class="side-nav-item">
+                  <a href="apps-ecommerce-products-grid.html" class="side-nav-link">
+                    <span class="menu-text">Blog</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="side-nav-item">
             <a href="apps-chat.html" class="side-nav-link">
               <span class="menu-icon"><i class="ti ti-message-filled"></i></span>
               <span class="menu-text"> Chat </span>

@@ -30,7 +30,6 @@ Route::get('/detail-blogs', function () {
     return view('landing.blogs.detail-blogs');
 });
 
-
 Route::get('/contact', function () {
     return view('landing.contact.contact');
 });
