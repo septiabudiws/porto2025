@@ -40,6 +40,13 @@
           <li class="side-nav-title mt-2">Apps & Pages</li>
 
           <li class="side-nav-item">
+            <a href="/biodata" class="side-nav-link">
+              <span class="menu-icon"><i class="ti ti-user"></i></span>
+              <span class="menu-text"> Biodata </span>
+            </a>
+          </li>
+
+          <li class="side-nav-item">
             <a data-bs-toggle="collapse" href="#sidebarKategori" aria-expanded="false" aria-controls="sidebarKategori"
               class="side-nav-link">
               <span class="menu-icon"><i class="ti ti-list"></i></span>
@@ -49,12 +56,12 @@
             <div class="collapse" id="sidebarKategori">
               <ul class="sub-menu">
                 <li class="side-nav-item">
-                  <a href="apps-ecommerce-products.html" class="side-nav-link">
+                  <a href="/kategori-works" class="side-nav-link">
                     <span class="menu-text">Porto</span>
                   </a>
                 </li>
                 <li class="side-nav-item">
-                  <a href="apps-ecommerce-products-grid.html" class="side-nav-link">
+                  <a href="/kategori-blog" class="side-nav-link">
                     <span class="menu-text">Blog</span>
                   </a>
                 </li>

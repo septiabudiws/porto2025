@@ -1,2 +1,47 @@
+created:
+    - database/factories/AboutFactory.php
+    - database/factories/AbilityFactory.php
+    - database/factories/EdukasiFactory.php
+    - database/factories/ExperienceFactory.php
+    - database/factories/KnowledgeFactory.php
+    - database/factories/SkillFactory.php
+    - database/factories/ProfileFactory.php
+    - database/factories/KategoriprojekFactory.php
+    - database/factories/KategoriblogFactory.php
+    - database/factories/ProjekFactory.php
+    - database/factories/BlogFactory.php
+    - database/migrations/2025_08_23_115101_create_abouts_table.php
+    - database/migrations/2025_08_23_115102_create_abilities_table.php
+    - database/migrations/2025_08_23_115103_create_edukasis_table.php
+    - database/migrations/2025_08_23_115104_create_experiences_table.php
+    - database/migrations/2025_08_23_115105_create_knowledge_table.php
+    - database/migrations/2025_08_23_115106_create_skills_table.php
+    - database/migrations/2025_08_23_115107_create_profiles_table.php
+    - database/migrations/2025_08_23_115108_create_kategoriprojeks_table.php
+    - database/migrations/2025_08_23_115109_create_kategoriblogs_table.php
+    - database/migrations/2025_08_23_115110_create_projeks_table.php
+    - database/migrations/2025_08_23_115111_create_blogs_table.php
+    - app/Models/About.php
+    - app/Models/Ability.php
+    - app/Models/Edukasi.php
+    - app/Models/Experience.php
+    - app/Models/Knowledge.php
+    - app/Models/Skill.php
+    - app/Models/Profile.php
+    - app/Models/Kategoriprojek.php
+    - app/Models/Kategoriblog.php
+    - app/Models/Projek.php
+    - app/Models/Blog.php
 models:
     User: { name: string, email: string, email_verified_at: 'timestamp nullable', password: string, remember_token: 'string:100 nullable' }
+    About: { deskripsi: text }
+    Ability: { nama: 'string:50', deskripsi: text }
+    Edukasi: { tenggat_waktu: 'string:15', nama_pendidikan: 'string:50', jurusan: 'string:50' }
+    Experience: { tenggat_waktu: 'string:15', nama_pengalaman: 'string:50', jabatan: 'string:15' }
+    Knowledge: { nama: 'string:50 nullable' }
+    Skill: { nama: 'string:50 nullable', level: integer }
+    Profile: { nama_panjang: 'string:100', pekerjaan: 'string:100', no_hp: 'string:15', email: 'string:50', alamat: 'string:100', tgl_lahir: date, link_fb: 'text nullable', link_ig: 'text nullable', link_x: 'text nullable', link_yt: 'text nullable' }
+    Kategoriprojek: { nama: 'string:100', relationships: { hasMany: Projek } }
+    Kategoriblog: { nama: 'string:100', relationships: { hasMany: Blog } }
+    Projek: { status: 'enum:active,inactive', kategori_id: 'id foreign onDelete:cascade', nama_projek: 'string:100', alat: 'string:100', client: 'string:100 nullable', preview: 'text nullable', deskripsi: text, gambar: 'string nullable', relationships: { belongsTo: Kategoriprojek } }
+    Blog: { status: 'enum:active,inactive', kategori_id: 'id foreign onDelete:cascade', judul: 'string:150', tgl: date, deskripsi: text, gambar: 'string nullable', relationships: { belongsTo: Kategoriblog } }

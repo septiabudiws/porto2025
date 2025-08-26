@@ -1,10 +1,17 @@
 <?php
 
+use App\Http\Controllers\BiodataController;
+use App\Http\Controllers\KategoriController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('landing.dashboard');
 });
+
+Route::get('/kategori-works', [KategoriController::class, 'works'])->name('kategori.works');
+Route::get('/kategori-blog', [KategoriController::class, 'blog'])->name('kategori.blog');
+
+Route::get('/biodata', [BiodataController::class, 'index'])->name('biodata');
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard');

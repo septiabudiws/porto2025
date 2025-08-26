@@ -12,3 +12,5 @@
 
   <!-- Icons css -->
   <link href="{{ asset('boron') }}/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.3.3/css/dataTables.dataTables.css" />
