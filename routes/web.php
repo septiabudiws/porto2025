@@ -2,16 +2,24 @@
 
 use App\Http\Controllers\BiodataController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('landing.dashboard');
 });
 
+Route::get('/about', [ProfileController::class, 'about'])->name('about');
+
 Route::get('/kategori-works', [KategoriController::class, 'works'])->name('kategori.works');
 Route::get('/kategori-blog', [KategoriController::class, 'blog'])->name('kategori.blog');
 
 Route::get('/biodata', [BiodataController::class, 'index'])->name('biodata');
+Route::get('/deskripsi-edit', [ProfileController::class, 'deskirpsiedit'])->name('deskripsi.edit');
+Route::get('/education', [ProfileController::class, 'education'])->name('education');
+Route::get('/experience', [ProfileController::class, 'experience'])->name('experience');
+Route::get('/knowledge', [ProfileController::class, 'knowledge'])->name('knowledge');
+Route::get('/skill', [ProfileController::class, 'skill'])->name('skill');
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard');

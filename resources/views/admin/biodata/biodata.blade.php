@@ -27,28 +27,28 @@
             <div class="col-md-8">
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">
-                  <i class="bi bi-phone me-2 text-primary"></i><strong>Nomor HP:</strong> +62 812 3456 7890
+                  <strong>Nomor HP:</strong> +62 812 3456 7890
                 </li>
                 <li class="list-group-item">
-                  <i class="bi bi-envelope me-2 text-danger"></i><strong>Email:</strong> user@email.com
+                  <strong>Email:</strong> user@email.com
                 </li>
                 <li class="list-group-item">
-                  <i class="bi bi-geo-alt me-2 text-success"></i><strong>Alamat:</strong> Jl. Contoh No. 123, Sumenep
+                  <strong>Alamat:</strong> Jl. Contoh No. 123, Sumenep
                 </li>
                 <li class="list-group-item">
-                  <i class="bi bi-calendar-event me-2 text-warning"></i><strong>Tanggal Lahir:</strong> 01 Januari 2000
+                  </i><strong>Tanggal Lahir:</strong> 01 Januari 2000
                 </li>
                 <li class="list-group-item">
-                  <i class="bi bi-facebook me-2 text-primary"></i><strong>Facebook:</strong> <a href="#" target="_blank">fb.com/username</a>
+                  <strong>Facebook:</strong> <a href="#" target="_blank">fb.com/username</a>
                 </li>
                 <li class="list-group-item">
-                  <i class="bi bi-instagram me-2 text-danger"></i><strong>Instagram:</strong> <a href="#" target="_blank">@username</a>
+                  <strong>Instagram:</strong> <a href="#" target="_blank">@username</a>
                 </li>
                 <li class="list-group-item">
-                  <i class="bi bi-twitter-x me-2 text-dark"></i><strong>X (Twitter):</strong> <a href="#" target="_blank">@username</a>
+                  <strong>X (Twitter):</strong> <a href="#" target="_blank">@username</a>
                 </li>
                 <li class="list-group-item">
-                  <i class="bi bi-youtube me-2 text-danger"></i><strong>YouTube:</strong> <a href="#" target="_blank">youtube.com/@username</a>
+                  <strong>YouTube:</strong> <a href="#" target="_blank">youtube.com/@username</a>
                 </li>
               </ul>
             </div>
