@@ -21,6 +21,9 @@ Route::get('/experience', [ProfileController::class, 'experience'])->name('exper
 Route::get('/knowledge', [ProfileController::class, 'knowledge'])->name('knowledge');
 Route::get('/skill', [ProfileController::class, 'skill'])->name('skill');
 
+Route::get('/blog', [App\Http\Controllers\BlogController::class, 'index'])->name('blog');
+Route::get('/blog-create', [App\Http\Controllers\BlogController::class, 'create'])->name('blog.create');
+
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
 });
