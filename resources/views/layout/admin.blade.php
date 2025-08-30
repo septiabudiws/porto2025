@@ -62,6 +62,8 @@
 
   <x-admin-panel.script></x-admin-panel.script>
 
+  <x-admin-panel.sweetalert></x-admin-panel.sweetalert>
+
 </body>
 
 </html>

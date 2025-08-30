@@ -37,7 +37,12 @@ class BiodataController extends Controller
     public function updateFoto(Request $request, $id)
 {
     $request->validate([
-        'profile' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+        ['profile' => 'required|image|mimes:jpg,jpeg,png|max:2048'],[
+            'profile.required' => 'Foto profil wajib diunggah.',
+            'profile.image' => 'File yang diunggah harus berupa gambar.',
+            'profile.mimes' => 'Format foto profil harus berupa jpg, jpeg, atau png.',
+            'profile.max' => 'Ukuran foto profil maksimal 2MB.',
+        ],
     ]);
 
     $biodata = Profile::findOrFail($id);
