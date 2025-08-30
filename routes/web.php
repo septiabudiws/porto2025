@@ -15,6 +15,8 @@ Route::get('/kategori-works', [KategoriController::class, 'works'])->name('kateg
 Route::get('/kategori-blog', [KategoriController::class, 'blog'])->name('kategori.blog');
 
 Route::get('/biodata', [BiodataController::class, 'index'])->name('biodata');
+Route::post('/biodata-update/{id}', [BiodataController::class, 'update'])->name('biodata.update');
+Route::put('/biodata/{id}/foto', [BiodataController::class, 'updateFoto'])->name('biodata.updateFoto');
 Route::get('/deskripsi-edit', [ProfileController::class, 'deskirpsiedit'])->name('deskripsi.edit');
 Route::get('/education', [ProfileController::class, 'education'])->name('education');
 Route::get('/experience', [ProfileController::class, 'experience'])->name('experience');
