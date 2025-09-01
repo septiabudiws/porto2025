@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EducationStore;
+use App\Http\Requests\EducationUpdate;
 use App\Models\Ability;
 use App\Models\About;
+use App\Models\Edukasi;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -85,7 +88,35 @@ class ProfileController extends Controller
     }
 
     public function education(){
-        return view('admin.profile.resume.education.education');
+        $edukasi = Edukasi::all();
+        return view('admin.profile.resume.education.education', compact('edukasi'));
+    }
+
+    public function educationStore(EducationStore $request){
+
+        Edukasi::create([
+            'nama_pendidikan' => $request->sekolah,
+            'jurusan' => $request->jurusan,
+            'tenggat_waktu' => $request->tenggat,
+        ]);
+
+        return redirect()->route('education')->with('success', 'Education added successfully.');
+    }
+
+    public function educationUpdate(EducationUpdate $request, $id){
+
+        Edukasi::where('id', $id)->update([
+            'nama_pendidikan' => $request->sekolah,
+            'jurusan' => $request->jurusan,
+            'tenggat_waktu' => $request->tenggat,
+        ]);
+
+        return redirect()->route('education')->with('success', 'Education updated successfully.');
+    }
+
+    public function educationDestroy($id){
+        Edukasi::where('id', $id)->delete();
+        return response()->json(['message' => 'Education deleted successfully.']);
     }
 
     public function experience(){
