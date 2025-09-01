@@ -27,7 +27,12 @@ Route::get('/education', [ProfileController::class, 'education'])->name('educati
 Route::post('/education-store', [ProfileController::class, 'educationStore'])->name('education.store');
 Route::put('/education-update/{id}', [ProfileController::class, 'educationUpdate'])->name('education.update');
 Route::delete('/education-delete/{id}', [ProfileController::class, 'educationDestroy'])->name('education.destroy');
+
 Route::get('/experience', [ProfileController::class, 'experience'])->name('experience');
+Route::post('/experience-store', [ProfileController::class, 'experienceStore'])->name('experience.store');
+Route::put('/experience-update/{id}', [ProfileController::class, 'experienceUpdate'])->name('experience.update');
+Route::delete('/experience-delete/{id}', [ProfileController::class, 'experienceDestroy'])->name('experience.destroy');
+
 Route::get('/knowledge', [ProfileController::class, 'knowledge'])->name('knowledge');
 Route::get('/skill', [ProfileController::class, 'skill'])->name('skill');
 

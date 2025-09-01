@@ -22,7 +22,7 @@ class EducationStore extends FormRequest
     public function rules(): array
     {
         return [
-            'sekolah' => 'required',
+            'sekolah' => 'required|unique:edukasis,nama_pendidikan',
             'jurusan' => 'required',
             'tenggat' => 'required|string',
         ];
@@ -32,6 +32,7 @@ class EducationStore extends FormRequest
     {
         return [
             'sekolah.required' => 'Nama sekolah tidak boleh kosong.',
+            'sekolah.unique' => 'Nama sekolah sudah ada.',
             'jurusan.required' => 'Nama jurusan tidak boleh kosong.',
             'tenggat.required' => 'Tenggat tidak boleh kosong.',
             'tenggat.string' => 'Tenggat harus berupa teks.',

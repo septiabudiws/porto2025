@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EducationUpdate extends FormRequest
+class ExperienceUpdate extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,19 +22,18 @@ class EducationUpdate extends FormRequest
     public function rules(): array
     {
         return [
-            'sekolah' => 'required',
-            'jurusan' => 'required',
-            'tenggat' => 'required|string',
+            'experience' => 'required',
+            'jabatan' => 'required',
+            'tenggat' => 'required',
         ];
     }
 
     public function messages(): array
     {
         return [
-            'sekolah.required' => 'Nama sekolah tidak boleh kosong.',
-            'jurusan.required' => 'Nama jurusan tidak boleh kosong.',
-            'tenggat.required' => 'Tenggat tidak boleh kosong.',
-            'tenggat.string' => 'Tenggat harus berupa teks.',
+            'experience.required' => 'Nama experience tidak boleh kosong.',
+            'jabatan.required' => 'Jabatan tidak boleh kosong.',
+            'tenggat.required' => 'Tenggat waktu tidak boleh kosong.',
         ];
     }
 }

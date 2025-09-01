@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\EducationStore;
 use App\Http\Requests\EducationUpdate;
+use App\Http\Requests\ExperienceStore;
+use App\Http\Requests\ExperienceUpdate;
 use App\Models\Ability;
 use App\Models\About;
 use App\Models\Edukasi;
+use App\Models\Experience;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -120,7 +123,35 @@ class ProfileController extends Controller
     }
 
     public function experience(){
-        return view('admin.profile.resume.experience.experience');
+        $experience = Experience::all();
+        return view('admin.profile.resume.experience.experience', compact('experience'));
+    }
+
+    public function experienceStore(ExperienceStore $request){
+
+        Experience::create([
+            'nama_pengalaman' => $request->experience,
+            'jabatan' => $request->jabatan,
+            'tenggat_waktu' => $request->tenggat,
+        ]);
+
+        return redirect()->route('experience')->with('success', 'Experience added successfully.');
+    }
+
+    public function experienceUpdate(ExperienceUpdate $request, $id){
+
+        Experience::where('id', $id)->update([
+            'nama_pengalaman' => $request->experience,
+            'jabatan' => $request->jabatan,
+            'tenggat_waktu' => $request->tenggat,
+        ]);
+
+        return redirect()->route('experience')->with('success', 'Experience updated successfully.');
+    }
+
+    public function experienceDestroy($id){
+        Experience::where('id', $id)->delete();
+        return response()->json(['message' => 'Experience deleted successfully.']);
     }
 
     public function knowledge(){
