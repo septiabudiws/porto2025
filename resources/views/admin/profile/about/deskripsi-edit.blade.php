@@ -7,16 +7,15 @@
             <a class="btn btn-info" href="/about">Kembali</a>
         </div>
         <div class="card-body">
-          <form action="" method="POST">
+          <form action="{{ route('about.update', $about->id) }}" method="POST">
             @csrf
-
+            @method('PUT')
             <div class="mb-3">
               <label for="about" class="form-label fw-bold">Deskripsi Tentang Saya</label>
               <textarea name="about" id="about" class="form-control" rows="6">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto corporis harum non aspernatur recusandae eum ipsam ratione quidem iusto provident, adipisci laudantium excepturi repellat veniam numquam atque blanditiis voluptatem asperiores quis quia totam quam distinctio. Error ducimus nobis deleniti deserunt!
+                {{ $about->deskripsi }}
               </textarea>
             </div>
-
             <div class="text-end">
               <button type="submit" class="btn btn-success">Simpan</button>
             </div>

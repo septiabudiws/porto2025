@@ -10,14 +10,17 @@ Route::get('/', function () {
 });
 
 Route::get('/about', [ProfileController::class, 'about'])->name('about');
+Route::get('/about-edit/{id}', [ProfileController::class, 'aboutEdit'])->name('about.edit');
+Route::put('/about-update/{id}', [ProfileController::class, 'aboutUpdate'])->name('about.update');
 
-Route::get('/kategori-works', [KategoriController::class, 'works'])->name('kategori.works');
-Route::get('/kategori-blog', [KategoriController::class, 'blog'])->name('kategori.blog');
+Route::post('/ability-store', [ProfileController::class, 'abilityStore'])->name('ability.store');
+Route::put('/ability-update/{id}', [ProfileController::class, 'abilityUpdate'])->name('ability.update');
+Route::delete('/ability-delete/{id}', [ProfileController::class, 'abilityDestroy'])->name('ability.destroy');
 
 Route::get('/biodata', [BiodataController::class, 'index'])->name('biodata');
 Route::post('/biodata-update/{id}', [BiodataController::class, 'update'])->name('biodata.update');
 Route::put('/biodata/{id}/foto', [BiodataController::class, 'updateFoto'])->name('biodata.updateFoto');
-Route::get('/deskripsi-edit', [ProfileController::class, 'deskirpsiedit'])->name('deskripsi.edit');
+
 Route::get('/education', [ProfileController::class, 'education'])->name('education');
 Route::get('/experience', [ProfileController::class, 'experience'])->name('experience');
 Route::get('/knowledge', [ProfileController::class, 'knowledge'])->name('knowledge');
@@ -25,6 +28,9 @@ Route::get('/skill', [ProfileController::class, 'skill'])->name('skill');
 
 Route::get('/blog', [App\Http\Controllers\BlogController::class, 'index'])->name('blog');
 Route::get('/blog-create', [App\Http\Controllers\BlogController::class, 'create'])->name('blog.create');
+
+Route::get('/kategori-works', [KategoriController::class, 'works'])->name('kategori.works');
+Route::get('/kategori-blog', [KategoriController::class, 'blog'])->name('kategori.blog');
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard');

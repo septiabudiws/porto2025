@@ -15,6 +15,7 @@ return new class extends Migration
 
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
+            $table->string('token', 8);
             $table->enum('status', ["active","inactive"]);
             $table->foreignId('kategori_id')->constrained()->cascadeOnDelete();
             $table->string('judul', 150);
