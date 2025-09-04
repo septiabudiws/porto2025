@@ -18,47 +18,58 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>blablabla</td>
-                <td>100%</td>
-                <td>
-                  <!-- Button Edit Kategori -->
-                  <button type="button" class="btn btn-info btn-icon me-2" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasSkillEdit" aria-controls="offcanvasSkillEdit"><i
-                      class="ti ti-pencil fs-18"></i></button>
+              @foreach ($skill as $get)
+                <tr>
+                  <td>{{ $loop->iteration }}</td>
+                  <td>{{ $get->nama }}</td>
+                  <td>{{ $get->level }}%</td>
+                  <td>
+                    <!-- Button Edit Kategori -->
+                    <button type="button" class="btn btn-info btn-icon me-2" data-bs-toggle="offcanvas"
+                      data-bs-target="#offcanvasSkillEdit{{ $get->id }}" aria-controls="offcanvasSkillEdit"><i
+                        class="ti ti-pencil fs-18"></i></button>
 
-                  <!-- Offcanvas Edit -->
-                  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasSkillEdit"
-                    aria-labelledby="offcanvasSkillEditLabel">
-                    <div class="offcanvas-header">
-                      <h4 class="offcanvas-title" id="offcanvasSkillEditLabel">Edit Skill</h4>
-                      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                        aria-label="Close"></button>
+                    <!-- Offcanvas Edit -->
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasSkillEdit{{ $get->id }}"
+                      aria-labelledby="offcanvasSkillEditLabel">
+                      <div class="offcanvas-header">
+                        <h4 class="offcanvas-title" id="offcanvasSkillEditLabel">Edit Skill</h4>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                          aria-label="Close"></button>
+                      </div>
+                      <div class="offcanvas-body">
+                        <form action="{{ route('skill.update', $get->id) }}" method="POST">
+                          @csrf
+                          @method('PUT')
+                          <div class="mb-3">
+                            <label for="skill" class="form-label">Skill</label>
+                            <input type="text" id="skill"
+                              class="form-control @error('skill') is-invalid @enderror" name="skill"
+                              placeholder="Masukkan Nama Skill" value="{{ $get->nama }}">
+                            @error('skill')
+                              <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                          </div>
+                          <div class="mb-3">
+                            <label for="level" class="form-label">Level Skill (%)</label>
+                            <input type="number" id="level"
+                              class="form-control @error('level') is-invalid @enderror" name="level"
+                              placeholder="Masukkan Level ex. 0 - 100" value="{{ $get->level }}">
+                            @error('level')
+                              <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                          </div>
+                          <div class="text-end">
+                            <button class="btn btn-primary" type="submit">Submit</button>
+                          </div>
+                        </form>
+                      </div>
                     </div>
-                    <div class="offcanvas-body">
-                      <form action="" method="POST">
-                        @csrf
-                        <div class="mb-3">
-                          <label for="skill" class="form-label">Skill</label>
-                          <input type="text" id="skill" class="form-control" name="skill"
-                            placeholder="Masukkan Nama Skill">
-                        </div>
-                        <div class="mb-3">
-                          <label for="level" class="form-label">Level Skill</label>
-                          <input type="number" id="level" class="form-control" name="level"
-                            placeholder="Masukkan Level ex. 0 - 100">
-                        </div>
-                        <div class="text-end">
-                          <button class="btn btn-primary" type="submit">Submit</button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
 
-                  <button type="button" class="btn btn-danger btn-icon"><i class="ti ti-trash fs-18"></i> </button>
-                </td>
-              </tr>
+                    <button onclick="confirmDelete('{{ route('skill.destroy', $get->id) }}')" class="btn btn-danger btn-icon"><i class="ti ti-trash fs-18"></i> </button>
+                  </td>
+                </tr>
+              @endforeach
             </tbody>
           </table>
         </div>
@@ -72,16 +83,23 @@
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div> <!-- end offcanvas-header-->
     <div class="offcanvas-body">
-      <form action="" method="POST">
+      <form action="{{ route('skill.store') }}" method="POST">
         @csrf
         <div class="mb-3">
           <label for="skill" class="form-label">Skill</label>
-          <input type="text" id="skill" class="form-control" name="skill" placeholder="Masukkan Nama Skill">
+          <input type="text" id="skill" class="form-control @error('skill') is-invalid @enderror" name="skill"
+            placeholder="Masukkan Nama Skill">
+          @error('skill')
+            <div class="invalid-feedback">{{ $message }}</div>
+          @enderror
         </div>
         <div class="mb-3">
-          <label for="level" class="form-label">Level Skill</label>
-          <input type="number" id="level" class="form-control" name="level"
+          <label for="level" class="form-label">Level Skill (%)</label>
+          <input type="number" id="level" class="form-control @error('level') is-invalid @enderror" name="level"
             placeholder="Masukkan Level ex. 0 - 100">
+          @error('level')
+            <div class="invalid-feedback">{{ $message }}</div>
+          @enderror
         </div>
         <div class="text-end">
           <button class="btn btn-primary" type="submit">Submit</button>

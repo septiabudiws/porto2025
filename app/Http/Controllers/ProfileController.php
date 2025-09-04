@@ -6,11 +6,14 @@ use App\Http\Requests\EducationStore;
 use App\Http\Requests\EducationUpdate;
 use App\Http\Requests\ExperienceStore;
 use App\Http\Requests\ExperienceUpdate;
+use App\Http\Requests\SkillStoreRequest;
+use App\Http\Requests\SkillUpdateRequest;
 use App\Models\Ability;
 use App\Models\About;
 use App\Models\Edukasi;
 use App\Models\Experience;
 use App\Models\Knowledge;
+use App\Models\Skill;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -199,6 +202,32 @@ class ProfileController extends Controller
     }
 
     public function skill(){
-        return view('admin.profile.resume.skill.skill');
+        $skill = Skill::all();
+        return view('admin.profile.resume.skill.skill', compact('skill'));
+    }
+
+    public function skillStore(SkillStoreRequest $request){
+
+        Skill::create([
+            'nama' => $request->skill,
+            'level' => $request->level,
+        ]);
+
+        return redirect()->route('skill')->with('success', 'Skill added successfully.');
+    }
+
+    public function skillUpdate(SkillUpdateRequest $request, $id){
+
+        Skill::where('id', $id)->update([
+            'nama' => $request->skill,
+            'level' => $request->level,
+        ]);
+
+        return redirect()->route('skill')->with('success', 'Skill updated successfully.');
+    }
+
+    public function skillDestroy($id){
+        Skill::where('id', $id)->delete();
+        return response()->json(['message' => 'Skill deleted successfully.']);
     }
 }

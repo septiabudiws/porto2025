@@ -40,7 +40,11 @@ Route::post('/knowledge-store', [ProfileController::class, 'knowledgeStore'])->n
 Route::put('/knowledge-update/{id}', [ProfileController::class, 'knowledgeUpdate'])->name('knowledge.update');
 Route::delete('/knowledge-delete/{id}', [ProfileController::class, 'knowledgeDestroy'])->name('knowledge.destroy');
 
+//skill page
 Route::get('/skill', [ProfileController::class, 'skill'])->name('skill');
+Route::post('/skill-store', [ProfileController::class, 'skillStore'])->name('skill.store');
+Route::put('/skill-update/{id}', [ProfileController::class, 'skillUpdate'])->name('skill.update');
+Route::delete('/skill-delete/{id}', [ProfileController::class, 'skillDestroy'])->name('skill.destroy');
 
 Route::get('/blog', [App\Http\Controllers\BlogController::class, 'index'])->name('blog');
 Route::get('/blog-create', [App\Http\Controllers\BlogController::class, 'create'])->name('blog.create');
