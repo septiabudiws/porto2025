@@ -17,17 +17,18 @@
               </tr>
             </thead>
             <tbody>
+                @foreach ($knowledge as $get)
               <tr>
-                <td>1</td>
-                <td>blablabla</td>
+                <td>{{ $loop->iteration }}</td>
+                <td>{{ $get->nama }}</td>
                 <td>
                   <!-- Button Edit Kategori -->
                   <button type="button" class="btn btn-info btn-icon me-2" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasKnowledgeEdit" aria-controls="offcanvasKnowledgeEdit"><i
+                    data-bs-target="#offcanvasKnowledgeEdit{{ $get->id }}" aria-controls="offcanvasKnowledgeEdit"><i
                       class="ti ti-pencil fs-18"></i></button>
 
                   <!-- Offcanvas Edit -->
-                  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasKnowledgeEdit"
+                  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasKnowledgeEdit{{ $get->id }}"
                     aria-labelledby="offcanvasKnowledgeEditLabel">
                     <div class="offcanvas-header">
                       <h4 class="offcanvas-title" id="offcanvasKnowledgeEditLabel">Edit Knowledge</h4>
@@ -35,12 +36,16 @@
                         aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
-                      <form action="" method="POST">
+                      <form action="{{ route('knowledge.update', $get->id) }}" method="POST">
                         @csrf
+                        @method('PUT')
                         <div class="mb-3">
-                          <label for="knowledge" class="form-label">Knowledge</label>
-                          <input type="text" id="knowledge" class="form-control" name="knowledge"
-                            placeholder="Masukkan Knowledge">
+                          <label for="knowledgeeee" class="form-label">Knowledge</label>
+                          <input type="text" id="knowledgeeee" class="form-control @error('knowledge') is-invalid @enderror" name="knowledge"
+                            placeholder="Masukkan Knowledge" value="{{ $get->nama }}">
+                          @error('knowledge')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                          @enderror
                         </div>
                         <div class="text-end">
                           <button class="btn btn-primary" type="submit">Submit</button>
@@ -49,9 +54,10 @@
                     </div>
                   </div>
 
-                  <button type="button" class="btn btn-danger btn-icon"><i class="ti ti-trash fs-18"></i> </button>
+                  <button onclick="confirmDelete('{{ route('knowledge.destroy', $get->id) }}')" class="btn btn-danger btn-icon"><i class="ti ti-trash fs-18"></i> </button>
                 </td>
               </tr>
+              @endforeach
             </tbody>
           </table>
         </div>
@@ -65,11 +71,15 @@
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div> <!-- end offcanvas-header-->
     <div class="offcanvas-body">
-      <form action="" method="POST">
+      <form action="{{ route('knowledge.store') }}" method="POST">
         @csrf
         <div class="mb-3">
           <label for="knowledge" class="form-label">Knowledge</label>
-          <input type="text" id="knowledge" class="form-control" name="knowledge" placeholder="Masukkan Knowledge">
+          <input type="text" id="knowledge" class="form-control @error('knowledge') is-invalid @enderror"
+            name="knowledge" placeholder="Masukkan Knowledge">
+          @error('knowledge')
+            <div class="invalid-feedback">{{ $message }}</div>
+          @enderror
         </div>
         <div class="text-end">
           <button class="btn btn-primary" type="submit">Submit</button>

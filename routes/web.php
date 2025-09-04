@@ -28,12 +28,18 @@ Route::post('/education-store', [ProfileController::class, 'educationStore'])->n
 Route::put('/education-update/{id}', [ProfileController::class, 'educationUpdate'])->name('education.update');
 Route::delete('/education-delete/{id}', [ProfileController::class, 'educationDestroy'])->name('education.destroy');
 
+//experience page
 Route::get('/experience', [ProfileController::class, 'experience'])->name('experience');
 Route::post('/experience-store', [ProfileController::class, 'experienceStore'])->name('experience.store');
 Route::put('/experience-update/{id}', [ProfileController::class, 'experienceUpdate'])->name('experience.update');
 Route::delete('/experience-delete/{id}', [ProfileController::class, 'experienceDestroy'])->name('experience.destroy');
 
+//knowledge page
 Route::get('/knowledge', [ProfileController::class, 'knowledge'])->name('knowledge');
+Route::post('/knowledge-store', [ProfileController::class, 'knowledgeStore'])->name('knowledge.store');
+Route::put('/knowledge-update/{id}', [ProfileController::class, 'knowledgeUpdate'])->name('knowledge.update');
+Route::delete('/knowledge-delete/{id}', [ProfileController::class, 'knowledgeDestroy'])->name('knowledge.destroy');
+
 Route::get('/skill', [ProfileController::class, 'skill'])->name('skill');
 
 Route::get('/blog', [App\Http\Controllers\BlogController::class, 'index'])->name('blog');

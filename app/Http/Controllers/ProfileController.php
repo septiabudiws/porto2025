@@ -10,6 +10,7 @@ use App\Models\Ability;
 use App\Models\About;
 use App\Models\Edukasi;
 use App\Models\Experience;
+use App\Models\Knowledge;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -155,7 +156,46 @@ class ProfileController extends Controller
     }
 
     public function knowledge(){
-        return view('admin.profile.resume.knowledge.knowledge');
+        $knowledge = Knowledge::all();
+        return view('admin.profile.resume.knowledge.knowledge', compact('knowledge'));
+    }
+
+    public function knowledgeStore(Request $request){
+
+        $request->validate([
+            'knowledge' => 'required|unique:knowledge,nama',
+        ],
+        [
+            'knowledge.required' => 'Knowledge tidak boleh kosong.',
+            'knowledge.unique' => 'Knowledge sudah ada.',
+        ]);
+
+        Knowledge::create([
+            'nama' => $request->knowledge,
+        ]);
+
+        return redirect()->route('knowledge')->with('success', 'Knowledge added successfully.');
+    }
+
+    public function knowledgeUpdate(Request $request, $id){
+
+        $request->validate([
+            'knowledge' => 'required',
+        ],
+        [
+            'knowledge.required' => 'Knowledge tidak boleh kosong.'
+        ]);
+
+        Knowledge::where('id', $id)->update([
+            'nama' => $request->knowledge,
+        ]);
+
+        return redirect()->route('knowledge')->with('success', 'Knowledge updated successfully.');
+    }
+
+    public function knowledgeDestroy($id){
+        Knowledge::where('id', $id)->delete();
+        return response()->json(['message' => 'Knowledge deleted successfully.']);
     }
 
     public function skill(){
