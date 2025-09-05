@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CvStoreRequest;
+use App\Http\Requests\ProfilePictureUpdateRequest;
 use App\Http\Requests\UpdateBioRequest;
 use App\Models\Profile;
 use Illuminate\Http\Request;
@@ -34,18 +36,8 @@ class BiodataController extends Controller
         return redirect()->back()->with('success', 'Profile updated successfully.');
     }
 
-    public function updateFoto(Request $request, $id)
+    public function updateFoto(ProfilePictureUpdateRequest $request, $id)
     {
-        $request->validate([
-            ['profile' => 'required|image|mimes:jpg,jpeg,png|max:2048'],
-            [
-                'profile.required' => 'Foto profil wajib diunggah.',
-                'profile.image' => 'File yang diunggah harus berupa gambar.',
-                'profile.mimes' => 'Format foto profil harus berupa jpg, jpeg, atau png.',
-                'profile.max' => 'Ukuran foto profil maksimal 2MB.',
-            ],
-        ]);
-
         $biodata = Profile::findOrFail($id);
 
         // hapus foto lama kalau ada
@@ -66,16 +58,14 @@ class BiodataController extends Controller
         return redirect()->back()->with('success', 'Foto profil berhasil diperbarui.');
     }
 
-    public function cvUpload(Request $request, $id)
+    public function cvUpload(CvStoreRequest $request, $id)
     {
-        $request->validate([
-            ['nama_cv' => 'required|mimes:pdf,doc,docx|max:5120'],
-            [
-                'nama_cv.required' => 'File CV wajib diunggah.',
-                'nama_cv.mimes' => 'Format file CV harus berupa pdf, doc, atau docx.',
-                'nama_cv.max' => 'Ukuran file CV maksimal 5MB.',
-            ],
-        ]);
+        $profile = Profile::findOrFail($id);
+
+        // hapus file lama kalau ada
+        if ($profile->link_x && file_exists(public_path('uploads/cv/' . $profile->link_x))) {
+            unlink(public_path('uploads/cv/' . $profile->link_x));
+        }
 
         // simpan CV baru
         $file = $request->file('nama_cv');
@@ -83,10 +73,11 @@ class BiodataController extends Controller
         $namaFile = $kode . '.' . $file->getClientOriginalExtension();
         $file->move(public_path('uploads/cv'), $namaFile);
 
-        Profile::where('id', $id)->update([
+        // update database
+        $profile->update([
             'link_x' => $namaFile,
         ]);
-        
+
         return redirect()->back()->with('success', 'CV berhasil diunggah.');
     }
 }

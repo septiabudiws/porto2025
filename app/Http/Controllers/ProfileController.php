@@ -27,20 +27,23 @@ class ProfileController extends Controller
         return view('admin.profile.about.about', $data);
     }
 
-    public function aboutEdit($id){
+    public function aboutEdit($id)
+    {
         $about = About::where('id', $id)->first();
         return view('admin.profile.about.deskripsi-edit', compact('about'));
     }
 
     public function aboutUpdate(Request $request, $id)
     {
-        $request->validate([
-            'about' => 'required|string',
-        ],
-        [
-            'about.required' => 'Deskripsi tidak boleh kosong.',
-            'about.string' => 'Deskripsi harus berupa teks.',
-        ]);
+        $request->validate(
+            [
+                'about' => 'required|string',
+            ],
+            [
+                'about.required' => 'Deskripsi tidak boleh kosong.',
+                'about.string' => 'Deskripsi harus berupa teks.',
+            ],
+        );
 
         About::where('id', $id)->update([
             'deskripsi' => $request->about,
@@ -51,14 +54,16 @@ class ProfileController extends Controller
 
     public function abilityStore(Request $request)
     {
-        $request->validate([
-            'ability' => 'required',
-            'deskripsi' => 'required',
-        ],
-        [
-            'ability.required' => 'Nama ability tidak boleh kosong.',
-            'deskripsi.required' => 'Deskripsi ability tidak boleh kosong.',
-        ]);
+        $request->validate(
+            [
+                'ability' => 'required',
+                'deskripsi' => 'required',
+            ],
+            [
+                'ability.required' => 'Nama ability tidak boleh kosong.',
+                'deskripsi.required' => 'Deskripsi ability tidak boleh kosong.',
+            ],
+        );
 
         Ability::create([
             'nama' => $request->ability,
@@ -70,15 +75,17 @@ class ProfileController extends Controller
 
     public function abilityUpdate(Request $request, $id)
     {
-        $request->validate([
-            'ability' => 'required|unique:abilities,nama',
-            'deskripsi' => 'required',
-        ],
-        [
-            'ability.required' => 'Nama ability tidak boleh kosong.',
-            'ability.unique' => 'Nama ability sudah ada.',
-            'deskripsi.required' => 'Deskripsi ability tidak boleh kosong.'
-        ]);
+        $request->validate(
+            [
+                'ability' => 'required|unique:abilities,nama',
+                'deskripsi' => 'required',
+            ],
+            [
+                'ability.required' => 'Nama ability tidak boleh kosong.',
+                'ability.unique' => 'Nama ability sudah ada.',
+                'deskripsi.required' => 'Deskripsi ability tidak boleh kosong.',
+            ],
+        );
 
         Ability::where('id', $id)->update([
             'nama' => $request->ability,
@@ -94,13 +101,14 @@ class ProfileController extends Controller
         return response()->json(['message' => 'Ability deleted successfully.']);
     }
 
-    public function education(){
+    public function education()
+    {
         $edukasi = Edukasi::all();
         return view('admin.profile.resume.education.education', compact('edukasi'));
     }
 
-    public function educationStore(EducationStore $request){
-
+    public function educationStore(EducationStore $request)
+    {
         Edukasi::create([
             'nama_pendidikan' => $request->sekolah,
             'jurusan' => $request->jurusan,
@@ -110,8 +118,8 @@ class ProfileController extends Controller
         return redirect()->route('education')->with('success', 'Education added successfully.');
     }
 
-    public function educationUpdate(EducationUpdate $request, $id){
-
+    public function educationUpdate(EducationUpdate $request, $id)
+    {
         Edukasi::where('id', $id)->update([
             'nama_pendidikan' => $request->sekolah,
             'jurusan' => $request->jurusan,
@@ -121,18 +129,20 @@ class ProfileController extends Controller
         return redirect()->route('education')->with('success', 'Education updated successfully.');
     }
 
-    public function educationDestroy($id){
+    public function educationDestroy($id)
+    {
         Edukasi::where('id', $id)->delete();
         return response()->json(['message' => 'Education deleted successfully.']);
     }
 
-    public function experience(){
+    public function experience()
+    {
         $experience = Experience::all();
         return view('admin.profile.resume.experience.experience', compact('experience'));
     }
 
-    public function experienceStore(ExperienceStore $request){
-
+    public function experienceStore(ExperienceStore $request)
+    {
         Experience::create([
             'nama_pengalaman' => $request->experience,
             'jabatan' => $request->jabatan,
@@ -142,8 +152,8 @@ class ProfileController extends Controller
         return redirect()->route('experience')->with('success', 'Experience added successfully.');
     }
 
-    public function experienceUpdate(ExperienceUpdate $request, $id){
-
+    public function experienceUpdate(ExperienceUpdate $request, $id)
+    {
         Experience::where('id', $id)->update([
             'nama_pengalaman' => $request->experience,
             'jabatan' => $request->jabatan,
@@ -153,25 +163,29 @@ class ProfileController extends Controller
         return redirect()->route('experience')->with('success', 'Experience updated successfully.');
     }
 
-    public function experienceDestroy($id){
+    public function experienceDestroy($id)
+    {
         Experience::where('id', $id)->delete();
         return response()->json(['message' => 'Experience deleted successfully.']);
     }
 
-    public function knowledge(){
+    public function knowledge()
+    {
         $knowledge = Knowledge::all();
         return view('admin.profile.resume.knowledge.knowledge', compact('knowledge'));
     }
 
-    public function knowledgeStore(Request $request){
-
-        $request->validate([
-            'knowledge' => 'required|unique:knowledge,nama',
-        ],
-        [
-            'knowledge.required' => 'Knowledge tidak boleh kosong.',
-            'knowledge.unique' => 'Knowledge sudah ada.',
-        ]);
+    public function knowledgeStore(Request $request)
+    {
+        $request->validate(
+            [
+                'knowledge' => 'required|unique:knowledge,nama',
+            ],
+            [
+                'knowledge.required' => 'Knowledge tidak boleh kosong.',
+                'knowledge.unique' => 'Knowledge sudah ada.',
+            ],
+        );
 
         Knowledge::create([
             'nama' => $request->knowledge,
@@ -180,14 +194,16 @@ class ProfileController extends Controller
         return redirect()->route('knowledge')->with('success', 'Knowledge added successfully.');
     }
 
-    public function knowledgeUpdate(Request $request, $id){
-
-        $request->validate([
-            'knowledge' => 'required',
-        ],
-        [
-            'knowledge.required' => 'Knowledge tidak boleh kosong.'
-        ]);
+    public function knowledgeUpdate(Request $request, $id)
+    {
+        $request->validate(
+            [
+                'knowledge' => 'required',
+            ],
+            [
+                'knowledge.required' => 'Knowledge tidak boleh kosong.',
+            ],
+        );
 
         Knowledge::where('id', $id)->update([
             'nama' => $request->knowledge,
@@ -196,18 +212,20 @@ class ProfileController extends Controller
         return redirect()->route('knowledge')->with('success', 'Knowledge updated successfully.');
     }
 
-    public function knowledgeDestroy($id){
+    public function knowledgeDestroy($id)
+    {
         Knowledge::where('id', $id)->delete();
         return response()->json(['message' => 'Knowledge deleted successfully.']);
     }
 
-    public function skill(){
+    public function skill()
+    {
         $skill = Skill::all();
         return view('admin.profile.resume.skill.skill', compact('skill'));
     }
 
-    public function skillStore(SkillStoreRequest $request){
-
+    public function skillStore(SkillStoreRequest $request)
+    {
         Skill::create([
             'nama' => $request->skill,
             'level' => $request->level,
@@ -216,8 +234,8 @@ class ProfileController extends Controller
         return redirect()->route('skill')->with('success', 'Skill added successfully.');
     }
 
-    public function skillUpdate(SkillUpdateRequest $request, $id){
-
+    public function skillUpdate(SkillUpdateRequest $request, $id)
+    {
         Skill::where('id', $id)->update([
             'nama' => $request->skill,
             'level' => $request->level,
@@ -226,7 +244,8 @@ class ProfileController extends Controller
         return redirect()->route('skill')->with('success', 'Skill updated successfully.');
     }
 
-    public function skillDestroy($id){
+    public function skillDestroy($id)
+    {
         Skill::where('id', $id)->delete();
         return response()->json(['message' => 'Skill deleted successfully.']);
     }

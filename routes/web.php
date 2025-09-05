@@ -4,6 +4,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BiodataController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ResumeController;
 use Illuminate\Support\Facades\Route;
 
 //biodata
@@ -59,9 +60,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/', [AboutController::class, 'index'])->name('landing.dashboard');
 
-Route::get('/resume', function () {
-    return view('landing.resume.resume');
-});
+Route::get('/resume', [ResumeController::class, 'index'])->name('landing.resume');
 
 Route::get('/works', function () {
     return view('landing.works.works');
