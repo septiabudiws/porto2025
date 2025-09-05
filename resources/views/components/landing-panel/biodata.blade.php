@@ -78,13 +78,23 @@
 
       <!-- cv button -->
       <div class="bostami-parsonal-info-btn">
-        <a class="btn-1" href="#">
-          <span class="icon">
-            <i class="fa-regular fa-download"></i>
-          </span>
-          download cv
-        </a>
+        @if ($bio->link_x)
+          <a class="btn-1" href="{{ asset('uploads/cv/' . $bio->link_x) }}" target="_blank">
+            <span class="icon">
+              <i class="fa-regular fa-download"></i>
+            </span>
+            Download CV
+          </a>
+        @else
+          <a class="btn-1 disabled" href="#" aria-disabled="true">
+            <span class="icon">
+              <i class="fa-regular fa-download"></i>
+            </span>
+            CV belum tersedia
+          </a>
+        @endif
       </div>
+
 
     </div>
   </div>

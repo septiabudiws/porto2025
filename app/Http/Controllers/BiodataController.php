@@ -35,34 +35,58 @@ class BiodataController extends Controller
     }
 
     public function updateFoto(Request $request, $id)
-{
-    $request->validate([
-        ['profile' => 'required|image|mimes:jpg,jpeg,png|max:2048'],[
-            'profile.required' => 'Foto profil wajib diunggah.',
-            'profile.image' => 'File yang diunggah harus berupa gambar.',
-            'profile.mimes' => 'Format foto profil harus berupa jpg, jpeg, atau png.',
-            'profile.max' => 'Ukuran foto profil maksimal 2MB.',
-        ],
-    ]);
+    {
+        $request->validate([
+            ['profile' => 'required|image|mimes:jpg,jpeg,png|max:2048'],
+            [
+                'profile.required' => 'Foto profil wajib diunggah.',
+                'profile.image' => 'File yang diunggah harus berupa gambar.',
+                'profile.mimes' => 'Format foto profil harus berupa jpg, jpeg, atau png.',
+                'profile.max' => 'Ukuran foto profil maksimal 2MB.',
+            ],
+        ]);
 
-    $biodata = Profile::findOrFail($id);
+        $biodata = Profile::findOrFail($id);
 
-    // hapus foto lama kalau ada
-    if ($biodata->foto && file_exists(public_path('uploads/foto-profil/' . $biodata->foto))) {
-        unlink(public_path('uploads/foto-profil/' . $biodata->foto));
+        // hapus foto lama kalau ada
+        if ($biodata->foto && file_exists(public_path('uploads/foto-profil/' . $biodata->foto))) {
+            unlink(public_path('uploads/foto-profil/' . $biodata->foto));
+        }
+
+        // simpan foto baru
+        $file = $request->file('profile');
+        $kode = Str::random(5);
+        $namaFile = $kode . '.' . $file->getClientOriginalExtension();
+        $file->move(public_path('uploads/foto-profil'), $namaFile);
+
+        $biodata->update([
+            'foto' => $namaFile,
+        ]);
+
+        return redirect()->back()->with('success', 'Foto profil berhasil diperbarui.');
     }
 
-    // simpan foto baru
-    $file = $request->file('profile');
-    $kode = Str::random(5);
-    $namaFile = $kode . '.' . $file->getClientOriginalExtension();
-    $file->move(public_path('uploads/foto-profil'), $namaFile);
+    public function cvUpload(Request $request, $id)
+    {
+        $request->validate([
+            ['nama_cv' => 'required|mimes:pdf,doc,docx|max:5120'],
+            [
+                'nama_cv.required' => 'File CV wajib diunggah.',
+                'nama_cv.mimes' => 'Format file CV harus berupa pdf, doc, atau docx.',
+                'nama_cv.max' => 'Ukuran file CV maksimal 5MB.',
+            ],
+        ]);
 
-    $biodata->update([
-        'foto' => $namaFile,
-    ]);
+        // simpan CV baru
+        $file = $request->file('nama_cv');
+        $kode = 'cv_moh_septiabudi_w';
+        $namaFile = $kode . '.' . $file->getClientOriginalExtension();
+        $file->move(public_path('uploads/cv'), $namaFile);
 
-    return redirect()->back()->with('success', 'Foto profil berhasil diperbarui.');
-}
-
+        Profile::where('id', $id)->update([
+            'link_x' => $namaFile,
+        ]);
+        
+        return redirect()->back()->with('success', 'CV berhasil diunggah.');
+    }
 }

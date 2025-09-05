@@ -1,18 +1,18 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BiodataController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('landing.dashboard');
-});
-
 //biodata
 Route::get('/biodata', [BiodataController::class, 'index'])->name('biodata');
 Route::post('/biodata-update/{id}', [BiodataController::class, 'update'])->name('biodata.update');
 Route::put('/biodata/{id}/foto', [BiodataController::class, 'updateFoto'])->name('biodata.updateFoto');
+
+//CRUD CV
+Route::put('/cv-upload/{id}', [BiodataController::class, 'cvUpload'])->name('cv.upload');
 
 //about page
 Route::get('/about', [ProfileController::class, 'about'])->name('about');
@@ -52,9 +52,12 @@ Route::get('/blog-create', [App\Http\Controllers\BlogController::class, 'create'
 Route::get('/kategori-works', [KategoriController::class, 'works'])->name('kategori.works');
 Route::get('/kategori-blog', [KategoriController::class, 'blog'])->name('kategori.blog');
 
+
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
 });
+
+Route::get('/', [AboutController::class, 'index'])->name('landing.dashboard');
 
 Route::get('/resume', function () {
     return view('landing.resume.resume');

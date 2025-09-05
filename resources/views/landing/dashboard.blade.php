@@ -3,11 +3,7 @@
   <div class="section-wrapper pl-60 pr-60 pt-60">
     <div class="bostami-page-title-wrap mb-35">
       <h2 class="page-title">about</h2>
-      <p>I'm Creative Director and UI/UX Designer from Sydney, Australia, working in web
-        development and print media. I enjoy turning complex problems into simple, beautiful
-        and intuitive designs.</p>
-      <p>My aim is to bring across your message and identity in the most creative way. I
-        created web design for many famous brand companies.</p>
+      <p>{!! $about->deskripsi !!}</p>
     </div>
   </div>
 
@@ -20,60 +16,23 @@
 
     <div class="bostami-what-do-wrap mb-30">
       <div class="row">
-
-        <!-- single item -->
-        <div class="col-xxl-6 col-xl-6 col-lg-6">
-          <div class="bostami-what-do-item bg-prink">
-            <div class="icon">
-              <h4>1</h4>
-            </div>
-            <div class="text">
-              <h4 class="title">Ui/Ux Design</h4>
-              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                euismod tincidunt volutpat.</p>
-            </div>
-          </div>
-        </div>
-        <!-- single item -->
-        <div class="col-xxl-6 col-xl-6 col-lg-6">
-          <div class="bostami-what-do-item bg-catkrill">
-            <div class="icon">
-              <h4>2</h4>
-            </div>
-            <div class="text">
-              <h4 class="title">App Development</h4>
-              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                euismod tincidunt volutpat.</p>
+        @foreach ($ability as $get)
+        @php
+            $color = $colors[$loop->index % count($colors)];
+        @endphp
+          <!-- single item -->
+          <div class="col-xxl-6 col-xl-6 col-lg-6">
+            <div class="bostami-what-do-item {{ $color }}">
+              <div class="icon">
+                <h4>{{ $loop->iteration }}</h4>
+              </div>
+              <div class="text">
+                <h4 class="title">{{ $get->nama }}</h4>
+                <p>{{ $get->deskripsi }}</p>
+              </div>
             </div>
           </div>
-        </div>
-        <!-- single item -->
-        <div class="col-xxl-6 col-xl-6 col-lg-6">
-          <div class="bostami-what-do-item  bg-catkrill">
-            <div class="icon">
-              <h4>3</h4>
-            </div>
-            <div class="text">
-              <h4 class="title">Photography</h4>
-              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                euismod tincidunt volutpat.</p>
-            </div>
-          </div>
-        </div>
-        <!-- single item -->
-        <div class="col-xxl-6 col-xl-6 col-lg-6">
-          <div class="bostami-what-do-item bg-prink bg-blue">
-            <div class="icon">
-              <h4>4</h4>
-            </div>
-            <div class="text">
-              <h4 class="title">Web Development</h4>
-              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                euismod tincidunt volutpat.</p>
-            </div>
-          </div>
-        </div>
-
+        @endforeach
       </div>
     </div>
 

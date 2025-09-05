@@ -12,8 +12,8 @@
               <div class="col-md-4 text-center mb-4 mb-md-0">
                 <!-- Foto bisa diklik untuk ubah -->
                 <div class="position-relative d-inline-block">
-                  <img id="profile-preview" src="{{ asset('uploads/foto-profil/'.$get->foto) }}"
-                    alt="Profile Picture" class="rounded-circle img-fluid shadow"
+                  <img id="profile-preview" src="{{ asset('uploads/foto-profil/' . $get->foto) }}" alt="Profile Picture"
+                    class="rounded-circle img-fluid shadow"
                     style="width: 180px; height: 180px; object-fit: cover; cursor: pointer;"
                     onclick="document.getElementById('profile-input').click()">
                   <!-- Icon kamera -->
@@ -23,7 +23,8 @@
                   </span>
                 </div>
                 <!-- Form Foto -->
-                <form id="profile-form" action="{{ route('biodata.updateFoto', $get->id) }}" method="POST" enctype="multipart/form-data" class="mt-2">
+                <form id="profile-form" action="{{ route('biodata.updateFoto', $get->id) }}" method="POST"
+                  enctype="multipart/form-data" class="mt-2">
                   @csrf
                   @method('PUT')
                   <input type="file" id="profile-input" name="profile" accept="image/*" class="d-none"
@@ -149,6 +150,33 @@
 
                       <div class="text-end">
                         <button class="btn btn-primary" type="submit">Update</button>
+                      </div>
+                    </form>
+
+                  </div>
+                </div>
+
+                <button class="btn btn-primary mt-3" type="button" data-bs-toggle="offcanvas"
+                  data-bs-target="#CV{{ $get->id }}" aria-controls="cv">{{ $get->link_x ? 'Perbarui CV' : 'Upload CV' }}</button>
+                <!-- Offcanvas CV -->
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="CV{{ $get->id }}"
+                  aria-labelledby="cvLabel">
+                  <div class="offcanvas-header">
+                    <h4 class="offcanvas-title" id="BiodataLabel">{{ $get->link_x ? 'Perbarui CV' : 'Upload CV' }}</h4>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                      aria-label="Close"></button>
+                  </div>
+                  <div class="offcanvas-body">
+                    <form action="{{ route('cv.upload', $get->id) }}" method="POST" enctype="multipart/form-data">
+                      @csrf
+                      @method('PUT')
+                      <div class="mb-3">
+                        <label for="nama_cv" class="form-label">Upload File</label>
+                        <input type="file" id="nama_cv" accept=".pdf,.doc,.docx" class="form-control"
+                          name="nama_cv">
+                      </div>
+                      <div class="text-end">
+                        <button class="btn btn-primary" type="submit">Upload</button>
                       </div>
                     </form>
 
