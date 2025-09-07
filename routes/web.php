@@ -51,6 +51,9 @@ Route::get('/blog', [App\Http\Controllers\BlogController::class, 'index'])->name
 Route::get('/blog-create', [App\Http\Controllers\BlogController::class, 'create'])->name('blog.create');
 
 Route::get('/kategori-works', [KategoriController::class, 'works'])->name('kategori.works');
+Route::post('/kategori-works-store', [KategoriController::class, 'kateProStore'])->name('kategori.works.store');
+Route::put('/kategori-works-update/{id}', [KategoriController::class, 'kateProUpdate'])->name('kategori.works.update');
+Route::delete('/kategori-works-delete/{id}', [KategoriController::class, 'kateProDestroy'])->name('kategori.works.destroy');
 
 Route::get('/kategori-blog', [KategoriController::class, 'blog'])->name('kategori.blog');
 Route::post('/kategori-blog-store', [KategoriController::class, 'kateBlogStore'])->name('kategori.blog.store');
