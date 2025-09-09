@@ -16,4 +16,4 @@
   <!-- dropzone css -->
   <link rel="stylesheet" href="{{ asset('boron') }}/assets/vendor/dropzone/dropzone.css" type="text/css" />
 
-  <link rel="stylesheet" href="https://cdn.datatables.net/2.3.3/css/dataTables.dataTables.css" />
+  <link rel="stylesheet" href="{{ asset('datatables') }}/datatables.min.css" />
