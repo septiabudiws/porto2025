@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategoriblog;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -13,6 +14,9 @@ class BlogController extends Controller
 
     public function create()
     {
-        return view('admin.blog.blog-create');
+        $data = [
+            'kategori' => Kategoriblog::all()
+        ];
+        return view('admin.blog.blog-create', $data);
     }
 }
