@@ -33,6 +33,6 @@ class Kategoriblog extends Model
 
     public function blogs(): HasMany
     {
-        return $this->hasMany(Blog::class);
+        return $this->hasMany(Blog::class, 'kategoriblog_id', 'id');
     }
 }

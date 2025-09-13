@@ -16,6 +16,7 @@ class Blog extends Model
      * @var array
      */
     protected $fillable = [
+        'token',
         'status',
         'kategori_id',
         'judul',
@@ -42,7 +43,7 @@ class Blog extends Model
 
     public function kategoriblog(): BelongsTo
     {
-        return $this->belongsTo(Kategoriblog::class);
+        return $this->belongsTo(Kategoriblog::class, 'kategoriblog_id', 'id');
     }
 
     // public function kategori(): BelongsTo

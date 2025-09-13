@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('token', 8);
             $table->enum('status', ["active","inactive"]);
-            $table->foreignId('kategori_id')->constrained()->cascadeOnDelete();
             $table->string('nama_projek', 100);
             $table->string('alat', 100);
             $table->string('client', 100)->nullable();

@@ -43,7 +43,7 @@ class Projek extends Model
 
     public function kategoriprojek(): BelongsTo
     {
-        return $this->belongsTo(Kategoriprojek::class);
+        return $this->belongsTo(Kategoriprojek::class, 'kategoriprojek_id', 'id');
     }
 
     // public function kategori(): BelongsTo

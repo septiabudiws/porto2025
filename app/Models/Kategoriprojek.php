@@ -33,6 +33,6 @@ class Kategoriprojek extends Model
 
     public function projeks(): HasMany
     {
-        return $this->hasMany(Projek::class);
+        return $this->hasMany(Projek::class, 'kategoriprojek_id', 'id');
     }
 }

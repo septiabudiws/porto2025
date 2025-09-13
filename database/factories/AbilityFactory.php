@@ -21,8 +21,8 @@ class AbilityFactory extends Factory
     public function definition(): array
     {
         return [
-            'nama' => fake()->regexify('[A-Za-z0-9]{50}'),
-            'deskripsi' => fake()->text(),
+            'nama' => $this->faker->word(),
+            'deskripsi' => $this->faker->text(),
         ];
     }
 }

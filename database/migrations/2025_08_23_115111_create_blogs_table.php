@@ -17,12 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('token', 8);
             $table->enum('status', ["active","inactive"]);
-            $table->foreignId('kategori_id')->constrained()->cascadeOnDelete();
             $table->string('judul', 150);
             $table->date('tgl');
             $table->text('deskripsi');
             $table->string('gambar')->nullable();
-            $table->foreignId('kategoriblog_id');
+            $table->foreignId('kategoriblog_id')->nullable();
             $table->timestamps();
         });
 

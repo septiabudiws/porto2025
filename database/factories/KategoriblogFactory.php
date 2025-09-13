@@ -21,7 +21,7 @@ class KategoriblogFactory extends Factory
     public function definition(): array
     {
         return [
-            'nama' => fake()->regexify('[A-Za-z0-9]{100}'),
+            'nama' => $this->faker->word(),
         ];
     }
 }

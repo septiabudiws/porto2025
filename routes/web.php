@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BiodataController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResumeController;
@@ -47,18 +48,21 @@ Route::post('/skill-store', [ProfileController::class, 'skillStore'])->name('ski
 Route::put('/skill-update/{id}', [ProfileController::class, 'skillUpdate'])->name('skill.update');
 Route::delete('/skill-delete/{id}', [ProfileController::class, 'skillDestroy'])->name('skill.destroy');
 
-Route::get('/blog', [App\Http\Controllers\BlogController::class, 'index'])->name('blog');
-Route::get('/blog-create', [App\Http\Controllers\BlogController::class, 'create'])->name('blog.create');
-
+//kategori works
 Route::get('/kategori-works', [KategoriController::class, 'works'])->name('kategori.works');
 Route::post('/kategori-works-store', [KategoriController::class, 'kateProStore'])->name('kategori.works.store');
 Route::put('/kategori-works-update/{id}', [KategoriController::class, 'kateProUpdate'])->name('kategori.works.update');
 Route::delete('/kategori-works-delete/{id}', [KategoriController::class, 'kateProDestroy'])->name('kategori.works.destroy');
 
+//kategori blog
 Route::get('/kategori-blog', [KategoriController::class, 'blog'])->name('kategori.blog');
 Route::post('/kategori-blog-store', [KategoriController::class, 'kateBlogStore'])->name('kategori.blog.store');
 Route::put('/kategori-blog-update/{id}', [KategoriController::class, 'kateBlogUpdate'])->name('kategori.blog.update');
 Route::delete('/kategori-blog-delete/{id}', [KategoriController::class, 'kateBlogDestroy'])->name('kategori.blog.destroy');
+
+Route::get('/blog', [BlogController::class, 'index'])->name('blog');
+Route::get('/blog-create', [BlogController::class, 'create'])->name('blog.create');
+Route::post('/blog-store', [BlogController::class, 'store'])->name('blog.store');
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
